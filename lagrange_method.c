@@ -24,7 +24,7 @@ int main()
                 for(count=0;count<=degree;count++){
                     if(count!=mainCount){
                         printf("(%.3f-%.3f)",x,lagrange[count]);
-                        /*Calculate numaretor*/
+                        /*Calculate numerator*/
                         temp1=(x-lagrange[count])*temp1;
                     }
                 }
