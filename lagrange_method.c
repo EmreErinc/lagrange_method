@@ -9,21 +9,26 @@ int main()
     scanf("%d",&degree);
     printf("Enter x value : ");
     scanf("%f",&x);
-    lagrange=(float*)malloc(sizeof(float)*degree);  /*Gerekli RAM ayrýldý*/
-    degree++;   /*dereceye kadar deðer almak için artýrýldý*/
+    /*Required RAM left*/
+    lagrange=(float*)malloc(sizeof(float)*degree);  
+    /*Inceased to target degree */
+    degree++;   
     for(count=0;count<degree;count++){
         printf("Enter x%d. value : ",count);
         scanf("%f",&input);
         lagrange[count]=input;
     }
-    for(mainCount=0;mainCount<degree;mainCount++){  /*sýrasýyla x0,x1,x2,x3 deðerleri sayýldý*/
+    /*x0,x1,x2,x3 are taken from user*/
+    for(mainCount=0;mainCount<degree;mainCount++){  
         printf("\n\nL[%d,%d]=",degree-1,mainCount);
         for(count=0;count<degree;count++){
-            if(count==0){   /*her döngüde tekrar yazýlmamasý için ilk deðerde pay 1 defaya mahsus yazdýrýldý*/
+            if(count==0){   
+                /*Writing numerator 1 time for do not write again every loop*/ 
                 for(count=0;count<degree;count++){
                     if(count!=mainCount){
                         printf("(%.3f-%.3f)",x,lagrange[count]);
-                        temp1=(x-lagrange[count])*temp1;    /*payýn deðeri hesaplandý*/
+                        /*Calculate numaretor*/
+                        temp1=(x-lagrange[count])*temp1;    
                     }
                 }
                 count=mainCount;
@@ -31,15 +36,18 @@ int main()
             if(count==degree-1){
                 printf("/");
                 for(count=0;count<degree;count++){
-                    if(count!=mainCount){   /*kural gereði paydanýn 0 olmamasý gerekli*/
+                    if(count!=mainCount){   
+                        /*Numerator must equal to 0*/
                         printf("(%.3f-%.3f)",lagrange[mainCount],lagrange[count]);
-                        temp2=(lagrange[mainCount]-lagrange[count])*temp2;  /*paydanýn deðeri hesaplandý*/
+                        /*Calculate denominator*/
+                        temp2=(lagrange[mainCount]-lagrange[count])*temp2;  
                     }
                 }
             }
         }
         printf("\nL[%d,%d]=(%.3f/%.3f)=%.3f",degree-1,mainCount,temp1,temp2,temp1/temp2);
-        temp1=1,temp2=1;    /*her seferinde temiz sonuç çýkmasý için 1 e eþitlendi*/
+        /*For clean result*/
+        temp1=1,temp2=1;    
     }
     return 0;
 }
